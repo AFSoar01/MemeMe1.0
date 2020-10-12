@@ -17,13 +17,6 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     var finalMemedImage: UIImage!
     
-    struct Meme {
-        var topText: String
-        var bottomText: String
-        var originalImage: UIImage
-        var memedImage: UIImage
-    }
-    
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
         .strokeColor: UIColor.black,
         .foregroundColor: UIColor.white,
