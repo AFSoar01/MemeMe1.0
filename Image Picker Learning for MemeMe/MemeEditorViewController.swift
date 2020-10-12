@@ -7,13 +7,15 @@
 
 import UIKit
 
-class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
-
+class MemeEditorViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
+    
     @IBOutlet weak var imageViewer: UIImageView!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
+    @IBOutlet weak var toolBar: UIToolbar!
+    
     
     var finalMemedImage: UIImage!
     
@@ -38,16 +40,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Text Properties
-        topTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        topTextField.text = "TOP"
-        topTextField.textAlignment = .center
-        bottomTextField.text = "BOTTOM"
-        bottomTextField.textAlignment = .center
-        self.topTextField.delegate = self
-        self.bottomTextField.delegate = self
-        //imageViewer.image = UIImage(named: "finalImage")
+        configureText(textField: topTextField, withText: "TOP")
+        configureText(textField: bottomTextField, withText: "BOTTOM")
         
     }
     
@@ -55,27 +49,26 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         super .viewWillDisappear(animated)
         unsubscribeFromKeyBoardNotifications()
     }
-
+    
     // MARK: - Build the Meme
     
     func subscribeToKeyBoardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-
+        
     }
     
     func unsubscribeFromKeyBoardNotifications() {
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-
+        NotificationCenter.default.removeObserver(self)
+        
     }
     
     @objc func keyboardWillShow(_ notification:Notification) {
         if bottomTextField.isFirstResponder {
             view.frame.origin.y -= getKeyBoardHeight(notification)
         }
-      
+        
     }
     
     @objc func keyboardWillHide(_ notification:Notification) {
@@ -109,7 +102,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
         chooseImageFromCameraOrPhoto(source: .camera)
     }
-        
+    
     //Pick Image
     func chooseImageFromCameraOrPhoto(source: UIImagePickerController.SourceType) {
         
@@ -118,9 +111,9 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         pickerController.sourceType = source
         pickerController.allowsEditing = true
         present(pickerController, animated: true, completion: nil)
-      }
+    }
     
-  
+    
     //SHARE BUTTON
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
@@ -137,16 +130,23 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     
     //Generate the Meme Image
     func generateMemedImage() -> UIImage {
+        //Hide the ToolBar and ShareButton
+        self.toolBar.isHidden = true
+        self.shareButton.isHidden = true
+        
+        //Draw the Image - Make the Meme
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let bigImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        finalMemedImage = bigImage
         UIGraphicsEndImageContext()
+        //view
         
-        //Crop the Image
-        let almostImage = (bigImage.cgImage?.cropping(to: imageViewer.frame))!
-        let finalImage = UIImage(cgImage: almostImage)
-        finalMemedImage = finalImage
-        return finalImage
+        //Return the ToolBar and ShareButton
+        self.toolBar.isHidden = false
+        self.shareButton.isHidden = false
+        
+        return bigImage
     }
     
     
@@ -161,40 +161,50 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
     
     func shareAlert() {
-    let alert = UIAlertController(title: "MemeMe", message: "Please Select An Image.", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
-    NSLog("The \"OK\" alert occured.")
-    }))
-    self.present(alert, animated: true, completion: nil)
+        let alert = UIAlertController(title: "MemeMe", message: "Please Select An Image.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+            NSLog("The \"OK\" alert occured.")
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     
+    func configureText(textField: UITextField, withText text: String) {
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.text = text
+        textField.textAlignment = .center
+        textField.delegate = self
+    }
+   
+    
 }
-    
 
 
-    
 
 
-        //MARK: - Share the Meme Object
 
-extension ViewController {
+
+
+
+//MARK: - Share the Meme Object
+
+extension MemeEditorViewController {
     @IBAction func share() {
-            
+        
         if self.imageViewer.image == nil {
             shareAlert()
         }
         
         else {
-        
+            
             //Define an instance of the ActivityViewController
             let item = [generateMemedImage()]    //[finalMemedImage]
             let activityController = UIActivityViewController(activityItems: item, applicationActivities: nil)
-
-    
+            
+            
             //Present the ActivityViewController
             self.present(activityController, animated: true, completion: nil)
-        
+            
             //Completion handler
             activityController.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed:                         Bool, arrayReturnedItems: [Any]?, error: Error?) in
                 if completed {
