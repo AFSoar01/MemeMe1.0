@@ -100,21 +100,22 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         return true
     }
     
-    //Pick Image from Album
+    //Choose to Pick Image from Album
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
-        let pickerController = UIImagePickerController()
-        pickerController.delegate = self
-        pickerController.sourceType = .photoLibrary
-        pickerController.allowsEditing = true
-        present(pickerController, animated: true, completion: nil)
+        chooseImageFromCameraOrPhoto(source: .photoLibrary)
     }
     
-    //Pick Image from Camera
+    //Choose to Pick Image from Camera
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
-
+        chooseImageFromCameraOrPhoto(source: .camera)
+    }
+        
+    //Pick Image
+    func chooseImageFromCameraOrPhoto(source: UIImagePickerController.SourceType) {
+        
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
-        pickerController.sourceType = .camera
+        pickerController.sourceType = source
         pickerController.allowsEditing = true
         present(pickerController, animated: true, completion: nil)
       }
