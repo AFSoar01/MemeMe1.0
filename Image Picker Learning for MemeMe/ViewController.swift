@@ -36,7 +36,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         subscribeToKeyBoardNotifications()
-        shareButton.isEnabled = false
+        shareButton.isEnabled = true
         if !UIImagePickerController.isCameraDeviceAvailable(UIImagePickerController.CameraDevice.front) {
             cameraButton.isEnabled = false
         }
@@ -127,11 +127,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
       }
     
   
-    //SHARE BUTTON NOT WORKING WITH CAMERA PHOTOS
+    //SHARE BUTTON
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage{
             imageViewer.image = image
-            shareButton.isEnabled = true
+            //shareButton.isEnabled = true
         }
         dismiss(animated: true, completion: nil)
     }
@@ -165,7 +165,15 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             originalImage: imageViewer!.image!,
             memedImage: finalMemedImage!)
     }
-
+    
+    func shareAlert() {
+    let alert = UIAlertController(title: "MemeMe", message: "Please Select An Image.", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+    NSLog("The \"OK\" alert occured.")
+    }))
+    self.present(alert, animated: true, completion: nil)
+    }
+    
     
 }
     
@@ -179,27 +187,32 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
 extension ViewController {
     @IBAction func share() {
             
-            
+        if self.imageViewer.image == nil {
+            shareAlert()
+        }
         
-        //Define an instance of the ActivityViewController
-        let item = [generateMemedImage()]    //[finalMemedImage]
-        let activityController = UIActivityViewController(activityItems: item, applicationActivities: nil)
+        else {
+        
+            //Define an instance of the ActivityViewController
+            let item = [generateMemedImage()]    //[finalMemedImage]
+            let activityController = UIActivityViewController(activityItems: item, applicationActivities: nil)
 
     
-        //Present the ActivityViewController
-        self.present(activityController, animated: true, completion: nil)
+            //Present the ActivityViewController
+            self.present(activityController, animated: true, completion: nil)
         
-        //Completion handler
-        activityController.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed:                         Bool, arrayReturnedItems: [Any]?, error: Error?) in
-            if completed {
-                print("share completed")
-                self.save()
-                return
-            } else {
-                print("cancel")
-            }
-            if let shareError = error {
-                print("error while sharing: \(shareError.localizedDescription)")
+            //Completion handler
+            activityController.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed:                         Bool, arrayReturnedItems: [Any]?, error: Error?) in
+                if completed {
+                    print("share completed")
+                    self.save()
+                    return
+                } else {
+                    print("cancel")
+                }
+                if let shareError = error {
+                    print("error while sharing: \(shareError.localizedDescription)")
+                }
             }
         }
     }

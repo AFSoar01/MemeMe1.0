@@ -13,8 +13,6 @@
 		E5BE1AEE2528B21000CB58DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5BE1AEC2528B21000CB58DF /* Main.storyboard */; };
 		E5BE1AF02528B21000CB58DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5BE1AEF2528B21000CB58DF /* Assets.xcassets */; };
 		E5BE1AF32528B21000CB58DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5BE1AF12528B21000CB58DF /* LaunchScreen.storyboard */; };
-		E5BE1AFE2528B21100CB58DF /* Image_Picker_Learning_for_MemeMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BE1AFD2528B21100CB58DF /* Image_Picker_Learning_for_MemeMeTests.swift */; };
-		E5BE1B092528B21100CB58DF /* Image_Picker_Learning_for_MemeMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BE1B082528B21100CB58DF /* Image_Picker_Learning_for_MemeMeUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,11 +42,7 @@
 		E5BE1AF22528B21000CB58DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E5BE1AF42528B21000CB58DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5BE1AF92528B21100CB58DF /* Image Picker Learning for MemeMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Image Picker Learning for MemeMeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E5BE1AFD2528B21100CB58DF /* Image_Picker_Learning_for_MemeMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image_Picker_Learning_for_MemeMeTests.swift; sourceTree = "<group>"; };
-		E5BE1AFF2528B21100CB58DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5BE1B042528B21100CB58DF /* Image Picker Learning for MemeMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Image Picker Learning for MemeMeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E5BE1B082528B21100CB58DF /* Image_Picker_Learning_for_MemeMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image_Picker_Learning_for_MemeMeUITests.swift; sourceTree = "<group>"; };
-		E5BE1B0A2528B21100CB58DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +74,6 @@
 			isa = PBXGroup;
 			children = (
 				E5BE1AE52528B21000CB58DF /* Image Picker Learning for MemeMe */,
-				E5BE1AFC2528B21100CB58DF /* Image Picker Learning for MemeMeTests */,
-				E5BE1B072528B21100CB58DF /* Image Picker Learning for MemeMeUITests */,
 				E5BE1AE42528B21000CB58DF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -108,24 +100,6 @@
 				E5BE1AF42528B21000CB58DF /* Info.plist */,
 			);
 			path = "Image Picker Learning for MemeMe";
-			sourceTree = "<group>";
-		};
-		E5BE1AFC2528B21100CB58DF /* Image Picker Learning for MemeMeTests */ = {
-			isa = PBXGroup;
-			children = (
-				E5BE1AFD2528B21100CB58DF /* Image_Picker_Learning_for_MemeMeTests.swift */,
-				E5BE1AFF2528B21100CB58DF /* Info.plist */,
-			);
-			path = "Image Picker Learning for MemeMeTests";
-			sourceTree = "<group>";
-		};
-		E5BE1B072528B21100CB58DF /* Image Picker Learning for MemeMeUITests */ = {
-			isa = PBXGroup;
-			children = (
-				E5BE1B082528B21100CB58DF /* Image_Picker_Learning_for_MemeMeUITests.swift */,
-				E5BE1B0A2528B21100CB58DF /* Info.plist */,
-			);
-			path = "Image Picker Learning for MemeMeUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,7 +242,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5BE1AFE2528B21100CB58DF /* Image_Picker_Learning_for_MemeMeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +249,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5BE1B092528B21100CB58DF /* Image_Picker_Learning_for_MemeMeUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
