@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,14 +13,14 @@
             <objects>
                 <viewController id="BYZ-38-t0r" userLabel="MemeEditorViewController" customClass="MemeEditorViewController" customModule="Image_Picker_Learning_for_MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yqf-1c-uJH">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yqf-1c-uJH">
+                                <rect key="frame" x="44" y="0.0" width="808" height="414"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="szp-eO-exk">
-                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <rect key="frame" x="44" y="344" width="808" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="49" id="sTq-9u-TIX"/>
                                 </constraints>
@@ -47,12 +47,12 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Bottom" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GOh-jx-KwT">
-                                <rect key="frame" x="0.0" y="774.5" width="414" height="18.5"/>
+                                <rect key="frame" x="44" y="305.5" width="808" height="18.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EIv-Cn-taq">
-                                <rect key="frame" x="0.0" y="94" width="414" height="18.5"/>
+                                <rect key="frame" x="44" y="50" width="808" height="18.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
@@ -68,24 +68,36 @@
                             <constraint firstItem="MK5-yj-QJP" firstAttribute="top" secondItem="yqf-1c-uJH" secondAttribute="top" constant="20" id="C94-4h-i6J"/>
                             <constraint firstItem="yqf-1c-uJH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="D8x-3B-gnl"/>
                             <constraint firstItem="GOh-jx-KwT" firstAttribute="leading" secondItem="EIv-Cn-taq" secondAttribute="leading" id="Ezv-WB-rTW"/>
+                            <constraint firstItem="GOh-jx-KwT" firstAttribute="bottom" secondItem="szp-eO-exk" secondAttribute="top" id="Gez-W4-LMy">
+                                <variation key="heightClass=regular" constant="-69"/>
+                            </constraint>
                             <constraint firstItem="yqf-1c-uJH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Km5-it-Usz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="szp-eO-exk" secondAttribute="bottom" id="N22-y3-YFG"/>
                             <constraint firstItem="yqf-1c-uJH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NHm-f9-j0Y"/>
                             <constraint firstAttribute="bottom" secondItem="yqf-1c-uJH" secondAttribute="bottom" id="S5z-or-J2m"/>
+                            <constraint firstItem="yqf-1c-uJH" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="VzX-6f-fdl"/>
                             <constraint firstItem="GOh-jx-KwT" firstAttribute="trailing" secondItem="yqf-1c-uJH" secondAttribute="trailing" id="W0y-J5-udw"/>
                             <constraint firstItem="GOh-jx-KwT" firstAttribute="leading" secondItem="yqf-1c-uJH" secondAttribute="leading" id="WNN-5q-VDY"/>
                             <constraint firstItem="GOh-jx-KwT" firstAttribute="centerX" secondItem="szp-eO-exk" secondAttribute="centerX" id="XvP-iN-PjW"/>
+                            <constraint firstItem="yqf-1c-uJH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Ygk-5o-oGF"/>
+                            <constraint firstItem="yqf-1c-uJH" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="YjJ-Lp-Ydn"/>
                             <constraint firstItem="szp-eO-exk" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ayz-5M-mBF"/>
                             <constraint firstItem="EIv-Cn-taq" firstAttribute="top" secondItem="yqf-1c-uJH" secondAttribute="top" constant="50" id="elA-cU-AV9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yqf-1c-uJH" secondAttribute="trailing" id="rlD-7q-ONO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yqf-1c-uJH" secondAttribute="bottom" id="t0g-qH-wpO"/>
                             <constraint firstItem="yqf-1c-uJH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="vGP-ak-AWA"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="t0g-qH-wpO"/>
                                 <exclude reference="4H6-kj-SdK"/>
                                 <exclude reference="Km5-it-Usz"/>
                                 <exclude reference="NHm-f9-j0Y"/>
                                 <exclude reference="S5z-or-J2m"/>
+                                <exclude reference="VzX-6f-fdl"/>
+                                <exclude reference="Ygk-5o-oGF"/>
+                                <exclude reference="YjJ-Lp-Ydn"/>
+                                <exclude reference="Gez-W4-LMy"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact">
@@ -94,6 +106,15 @@
                                 <include reference="Km5-it-Usz"/>
                                 <include reference="NHm-f9-j0Y"/>
                                 <include reference="S5z-or-J2m"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="constraints">
+                                <include reference="t0g-qH-wpO"/>
+                                <include reference="VzX-6f-fdl"/>
+                                <include reference="Ygk-5o-oGF"/>
+                                <include reference="YjJ-Lp-Ydn"/>
+                                <include reference="Gez-W4-LMy"/>
                             </mask>
                         </variation>
                     </view>
